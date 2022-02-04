@@ -1,0 +1,64 @@
+{
+  "compilerOptions": {
+    "target": "es5",
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext",
+      "ES2021"
+    ],
+    "allowJs": true,
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "jsx": "react",
+    
+    "noEmit": false,
+    "declaration": true,
+    "importHelpers": true,
+
+    "rootDir": "./src", /* Specify the root directory of input files. Use to control the output directory structure with --outDir. */
+    "outDir": "dist/", /* Redirect output structure to the directory. */
+    "module": "commonjs", /* Specify module code generation: 'none', 'commonjs', 'amd', 'system', 'umd', 'es2015', or 'ESNext'. */
+    "moduleResolution": "Node",
+    
+    /* -- Strict Type-Checking Options -- */
+    "forceConsistentCasingInFileNames": true,
+    "alwaysStrict": true, /* Parse in strict mode and emit "use strict" for each source file. */
+    "noFallthroughCasesInSwitch": false, /* Report errors for fallthrough cases in switch statement. */
+    "noImplicitAny": true, /* Raise error on expressions and declarations with an implied 'any' type. */
+    "noImplicitReturns": true, /* Report error when not all code paths in function return a value. */
+    "noImplicitThis": true, /* Raise error on 'this' expressions with an implied 'any' type. */
+    "noUnusedLocals": true, /* Report errors on unused locals. */
+    "noUnusedParameters": true, /* Report errors on unused parameters. */
+    "strict": true, /* Enable all strict type-checking options. */
+    "strictFunctionTypes": true, /* Enable strict checking of function types. */
+    "strictNullChecks": true, /* Enable strict null checks. */
+    "strictPropertyInitialization": true, /* Ensure non-undefined class properties are initialized in the constructor. */
+    "importsNotUsedAsValues": "error",
+
+    /* -- Other -- */
+    "allowUmdGlobalAccess": false,
+    "allowUnreachableCode": false,
+    "allowUnusedLabels": false,
+    "assumeChangesOnlyAffectDirectDependencies": false,
+    "checkJs": false,
+    "disableSizeLimit": false,
+    "generateCpuProfile": "profile.cpuprofile",
+    "removeComments": false,
+    "strictBindCallApply": true,
+    "suppressImplicitAnyIndexErrors": true
+  },
+  "exclude": [
+      "node_modules",
+      "playground",
+      "docs",
+      "dist",
+      "src/assets",
+      "*.test.ts",
+      "*.stories.tsx"
+  ],
+  "include": ["src", "types.d.ts"],
+}
