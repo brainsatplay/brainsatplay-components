@@ -643,6 +643,10 @@ select {
         background: red;
     } */
 
+.static {
+  position: static;
+}
+
 .contents {
   display: contents;
 }
@@ -693,4 +697,8 @@ select {
 
 .w-full {
   width: 100%;
+}
+
+.border {
+  border-width: 1px;
 }

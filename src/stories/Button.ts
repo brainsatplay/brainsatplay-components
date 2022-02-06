@@ -27,6 +27,7 @@ export interface ButtonProps {
 /**
  * Primary UI component for user interaction
  */
+
 export const Button = ({ primary, backgroundColor, size, label, onClick }: ButtonProps = {label: 'Button'}) => {
 
   console.log('Primary', primary)

@@ -8,6 +8,7 @@ import pkg from './package.json';
 import {terser} from "rollup-plugin-terser";
 import css from "rollup-plugin-import-css";
 import node_resolve from "@rollup/plugin-node-resolve";
+import { babel } from '@rollup/plugin-babel';
 
 export default {
  input: './src/index.ts', // our source file
@@ -31,6 +32,9 @@ export default {
  ],
  plugins: [
     node_resolve(),
+    babel({
+        plugins: ["@babel/plugin-proposal-class-properties"]
+    }),
     css(),
     // Resolve bare module specifiers to relative paths
     resolve(),

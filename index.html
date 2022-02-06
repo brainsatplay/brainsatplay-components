@@ -5,18 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
-    <script src="./dist/browser.js"></script>
+    <!-- <script src="./dist/browser.js"></script> -->
 </head>
 <body>
     <play.Button></play.Button>
     <script type="module">
-        import * as mod from './dist/module.js'
-        console.log(mod)
-        console.log(play)
-        let button = play.Button()
-        console.log(button)
-        document.body.insertAdjacentElement('beforeend',button)
-    </script>
+        import {Rating} from './dist/module.js'
+        // console.log(mod)
+        // console.log(play)
+        const rating = new Rating({vote: 'up'})
+        // const rating = new play.Rating({vote: 'up'})
+        console.log(rating)
+        document.body.insertAdjacentElement('beforeend',rating)
 
+        document.body.insertAdjacentHTML('beforeend', '<rating-element></rating-element>')
+    </script>
 </body>
 </html>

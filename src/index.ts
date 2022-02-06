@@ -1,2 +1,2 @@
 export * from './general.types';
-export * from './stories/Button';
+export * from './stories';
