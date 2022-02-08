@@ -10,19 +10,26 @@
 <body>
     <h2>Audio Simulation</h2>
     <div style="max-width: 400px; width: 100%;"></div>
+
+
     <script type="module">
-        import {Volume} from './dist/module.js'
+        import {Volume, Player} from './dist/module.js'
         const volumeElement = new Volume({volume: 0.5})
         document.body.querySelector('div').insertAdjacentElement('beforeend',volumeElement)
 
         let animate = () => {
             const volume = 0.5 + 0.5*Math.sin(Date.now()/1000)
             volumeElement.volume = volume
-            console.log(volumeElement, volume)
             setTimeout(animate, 100)
         }
 
         animate()
+        
+        // Get Video
+        const source =  await navigator.mediaDevices.getUserMedia({video: true})
+        const player = new Player({autoplay: true})
+        document.body.querySelector('div').insertAdjacentElement('beforeend',player)
+        player.source =  source
     </script>
 </body>
 </html>

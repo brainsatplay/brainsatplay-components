@@ -1,8 +1,8 @@
 import { Story, Meta } from '@storybook/web-components';
-import { Volume, VolumeProps } from './Volume';
+import { TimeSeries, TimeSeriesProps } from './TimeSeries';
 
 export default {
-  title: 'Audio/Volume',
+  title: 'Streams/Data/TimeSeries',
   argTypes: {
     count: {
       control: {
@@ -12,7 +12,7 @@ export default {
         step: 1, 
       }
     },
-    volume: {
+    TimeSeries: {
       control: {
         type: 'range', // Type 'select' is automatically inferred when 'options' is defined
         min: 0,
@@ -28,19 +28,9 @@ export default {
   }
 } as Meta;
 
-const Template: Story<Partial<VolumeProps>> = (args) => new Volume(args);
+const Template: Story<Partial<TimeSeriesProps>> = (args) => new TimeSeries(args);
 
-export const DefaultVolume = Template.bind({});
-DefaultVolume.args = {
-  // volume: 0
-};
-
-export const HalfVolume = Template.bind({});
-HalfVolume.args = {
-  volume: 0.5
-};
-
-export const FullVolume = Template.bind({});
-FullVolume.args = {
-  volume: 1
+export const Default = Template.bind({});
+Default.args = {
+  // TimeSeries: 0
 };
