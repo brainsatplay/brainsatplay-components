@@ -76,7 +76,7 @@ export class Volume extends LitElement {
       </style>
 
         <div id="wrapper">
-          ${Array.from({length: this.count}, (e, i) => html`<div class=${i < numToColor ? 'target active' : 'target'}></div>`)}
+          ${Array.from({length: this.count}, (_, i) => html`<div class=${i < numToColor ? 'target active' : 'target'}></div>`)}
         </div>
     `
     }

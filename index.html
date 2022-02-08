@@ -8,17 +8,21 @@
     <!-- <script src="./dist/browser.js"></script> -->
 </head>
 <body>
-    <play.Button></play.Button>
+    <h2>Audio Simulation</h2>
+    <div style="max-width: 400px; width: 100%;"></div>
     <script type="module">
-        import {Rating} from './dist/module.js'
-        // console.log(mod)
-        // console.log(play)
-        const rating = new Rating({vote: 'up'})
-        // const rating = new play.Rating({vote: 'up'})
-        console.log(rating)
-        document.body.insertAdjacentElement('beforeend',rating)
+        import {Volume} from './dist/module.js'
+        const volumeElement = new Volume({volume: 0.5})
+        document.body.querySelector('div').insertAdjacentElement('beforeend',volumeElement)
 
-        document.body.insertAdjacentHTML('beforeend', '<rating-element></rating-element>')
+        let animate = () => {
+            const volume = 0.5 + 0.5*Math.sin(Date.now()/1000)
+            volumeElement.volume = volume
+            console.log(volumeElement, volume)
+            setTimeout(animate, 100)
+        }
+
+        animate()
     </script>
 </body>
 </html>

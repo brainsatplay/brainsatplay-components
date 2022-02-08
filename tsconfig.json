@@ -60,5 +60,5 @@
       "**/*.test.ts",
       "**/*.stories.ts"
   ],
-  "include": ["src", "types.d.ts"],
+  "include": ["src"],
 }

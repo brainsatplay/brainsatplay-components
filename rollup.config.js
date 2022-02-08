@@ -27,9 +27,9 @@ export default {
    name: 'play' // the global which can be used in a browser
   }
  ],
- external: [
-  ...Object.keys(pkg.dependencies || {})
- ],
+//  external: [
+//   ...Object.keys(pkg.dependencies || {})
+//  ],
  plugins: [
     node_resolve(),
     babel({
