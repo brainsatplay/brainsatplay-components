@@ -25,14 +25,15 @@ export class Nav extends LitElement {
     return css`
 
     
+    :host {
+      font-family: sans-serif;
+    }
 
-    :host{
+    header {
       width: 100%;
-      height: 100%;
       position: absolute; 
       top: 0;
       left: 0;
-      font-family: sans-serif;
     }
 
     :host * {
@@ -201,6 +202,7 @@ export class Nav extends LitElement {
 
 
       return html`
+      <header>
       ${(this.secondary.length > 0) ? html`<nav id="secondary">${this.secondary?.map(o => this.getElement(o))}</nav>` : ``}
       <nav id="primary">
       ${ html`<a class="brand" target=${(this.brand.external) ? "_blank" : "_self"} href=${this.brand.link}>${(/(jpg|gif|png|JPG|GIF|PNG|JPEG|jpeg)$/.test(this.brand.content)) ? html`<img src="${this.brand.content}"></img>` : html`<h1>${this.brand.content.toUpperCase()}</h1>`}</a>`}
@@ -214,6 +216,7 @@ export class Nav extends LitElement {
         </div>
 
       </nav>
+      </header>
     `
     }
   }

@@ -24,7 +24,7 @@ export default {
   {
    file: pkg.browser,
    format: 'iife',
-   name: 'play' // the global which can be used in a browser
+   name: 'components' // the global which can be used in a browser
   }
  ],
 //  external: [
