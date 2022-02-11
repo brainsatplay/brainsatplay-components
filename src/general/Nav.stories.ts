@@ -4,14 +4,6 @@ import { Nav, NavProps } from './Nav';
 export default {
   title: 'General/Nav',
   argTypes: {
-    verb: {
-      options: ['contribute', 'donate'],
-      control: { type: 'select' },
-    },
-    color: {
-      options: ['blue', 'white'],
-      control: { type: 'select' },
-    },
   },
 } as Meta;
 
