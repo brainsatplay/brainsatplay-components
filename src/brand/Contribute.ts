@@ -40,7 +40,7 @@ export class Contribute extends LitElement {
 
     }
     
-    willUpdate(changedProps:any) {
+    willUpdate(_:any) {
       // console.log(changedProps)
       // if (changedProps.has('type')) {
 

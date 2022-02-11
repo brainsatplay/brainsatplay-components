@@ -13,8 +13,43 @@
 
 
     <script type="module">
-        import {Volume, Player} from './dist/module.js'
-        const volumeElement = new Volume({volume: 0.5})
+        import * as components from './dist/module.js'
+        console.log(components)
+
+        import {streams, Nav} from './dist/module.js'
+
+        const navElement = new Nav({
+            brand: {
+                content: 'Test'
+            },
+            secondary: [
+                {content: 'Subdomain 1'},
+                {content: 'Subdomain 2'},
+                {content: 'Action', type:'button'}
+            ],
+            primary: {
+                menu: [
+                    {content: 'Page 1'},
+                    {content: 'Page 2'},
+                ],
+                options: [
+                    {content: 'Log In'},
+                ]
+            }
+        })
+        
+        document.body.insertAdjacentElement('beforeend', navElement)
+
+
+
+        // Get Video
+        const source =  await navigator.mediaDevices.getUserMedia({video: true})
+        const player = new streams.video.Player({autoplay: true})
+        document.body.querySelector('div').insertAdjacentElement('beforeend',player)
+        player.source =  source
+
+        // Get Audio Volume
+        const volumeElement = new streams.audio.Volume({volume: 0.5})
         document.body.querySelector('div').insertAdjacentElement('beforeend',volumeElement)
 
         let animate = () => {
@@ -24,12 +59,7 @@
         }
 
         animate()
-        
-        // Get Video
-        const source =  await navigator.mediaDevices.getUserMedia({video: true})
-        const player = new Player({autoplay: true})
-        document.body.querySelector('div').insertAdjacentElement('beforeend',player)
-        player.source =  source
+
     </script>
 </body>
 </html>
