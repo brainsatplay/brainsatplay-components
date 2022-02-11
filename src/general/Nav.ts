@@ -4,7 +4,8 @@ import { LitElement, html, css } from 'lit';
 
 type ElementType = {
   content: string
-  link?: string
+  link?: string,
+  external?: boolean,
   type?: string
 }
 
@@ -172,22 +173,22 @@ export class Nav extends LitElement {
       switch (o.type){
 
         case 'button': 
-          return html`<a href="${o.link}"><button>${o.content}</button></a>`
+          return html`<a href="${o.link}" target=${(o.external) ? "_blank" : "_self"}><button>${o.content}</button></a>`
 
         default:
-          return html`<a href="${o.link}" class="decorate">${o.content}</a>`
+          return html`<a href="${o.link}" target=${(o.external) ? "_blank" : "_self"} class="decorate">${o.content}</a>`
 
       }
     }
   
     render() {
 
+
+
       return html`
-      <nav id="secondary">      
-      ${this.secondary?.map(o => this.getElement(o))}
-      </nav>
+      ${(this.secondary.length > 0) ? html`<nav id="secondary">${this.secondary?.map(o => this.getElement(o))}</nav>` : ``}
       <nav id="primary">
-      ${ html`<a class="brand" href=${this.brand.link}>${(/(jpg|gif|png|JPG|GIF|PNG|JPEG|jpeg)$/.test(this.brand.content)) ? html`<img src="${this.brand.content}"></img>` : html`<h1>${this.brand.content.toUpperCase()}</h1>`}</a>`}
+      ${ html`<a class="brand" target=${(this.brand.external) ? "_blank" : "_self"} href=${this.brand.link}>${(/(jpg|gif|png|JPG|GIF|PNG|JPEG|jpeg)$/.test(this.brand.content)) ? html`<img src="${this.brand.content}"></img>` : html`<h1>${this.brand.content.toUpperCase()}</h1>`}</a>`}
         <div id="menu">
           ${this.primary.menu?.map(o => this.getElement(o))}
         </div>
@@ -196,19 +197,6 @@ export class Nav extends LitElement {
         </div>
 
       </nav>
-      <div>
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur urna nunc, tempor at nibh vel, blandit pulvinar nisl. Sed porttitor porta tortor maximus bibendum. Maecenas a gravida leo, pellentesque tristique ligula. Quisque rhoncus gravida tellus, et condimentum lectus. Cras laoreet nunc ac ex blandit venenatis. Vivamus hendrerit in sapien id porta. Quisque eu arcu quis nisi mollis pellentesque sit amet ut sem. Donec eget hendrerit enim, in commodo odio. Nam vitae ligula eu risus fermentum suscipit eget eget erat. Vivamus leo justo, vulputate quis volutpat vel, rutrum placerat velit. Sed semper felis ac massa mollis fringilla. Nulla facilisi.
-
-Morbi id pellentesque nulla, ac egestas mauris. Maecenas et nulla sem. Nulla id dui lacus. Nulla elementum, lacus at mollis consequat, urna nisl sollicitudin lacus, aliquam malesuada purus massa id dolor. Praesent eget ligula sed purus eleifend mattis. Vestibulum a libero vitae nisl gravida commodo. In hac habitasse platea dictumst. Pellentesque convallis erat non ipsum luctus pharetra. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Maecenas et convallis orci. Maecenas sapien justo, iaculis et magna sed, tristique dictum velit.
-
-Nullam sit amet lectus a quam rhoncus lobortis at at risus. Sed elementum congue scelerisque. Donec quis elementum massa. Nulla tristique orci elit, non interdum sem blandit in. Duis vehicula semper elit, ut maximus est semper quis. Nunc vitae lectus sapien. Maecenas vehicula nunc at augue pulvinar, posuere sodales risus tristique. Donec ornare malesuada eros facilisis dignissim. Sed a nunc nibh. Sed convallis, quam quis faucibus tristique, est velit malesuada mi, sed dictum magna enim nec ante. Ut fringilla mattis sem nec vestibulum.
-
-Nullam id dui quis metus sollicitudin efficitur non nec lacus. Vestibulum sit amet nibh mattis ipsum sagittis dictum. Morbi vestibulum turpis non pellentesque faucibus. Maecenas ut porttitor lacus. Ut porta justo vitae lectus eleifend, et iaculis mauris porttitor. Fusce non risus ultricies, finibus tortor sed, facilisis arcu. Morbi id euismod justo, tempor vehicula purus. Cras quam justo, vulputate non mi vitae, laoreet pulvinar ex. Donec sit amet hendrerit turpis. Vestibulum vitae venenatis leo. Nulla imperdiet imperdiet purus nec dignissim.
-
-Vivamus eget turpis urna. Morbi tempus, orci id maximus consequat, diam quam vehicula est, a venenatis risus massa vel metus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla facilisi. Proin eget molestie quam, quis iaculis risus. Nulla in magna metus. Donec dictum leo nibh, a lobortis elit dapibus et. Nunc cursus velit eget tincidunt vulputate. Etiam ultricies consectetur diam. Aenean porttitor dolor vel velit sagittis blandit. In vitae est sit amet arcu aliquet hendrerit. Vestibulum ut lectus ultricies, tempor eros ut, ullamcorper turpis. Sed eget tellus nec augue imperdiet congue quis et ante. Nam eleifend elementum felis. Mauris efficitur dolor ac diam sagittis, et bibendum leo ullamcorper.
-
-
-      </div>
     `
     }
   }
