@@ -1,4 +1,9 @@
 export * from './general.types';
-export * from './streams/audio';
-export * from './streams/video';
-export * from './streams/data';
+import * as streams from './streams';
+import * as brand from './brand';
+export * from './brand';
+
+export {
+    streams,
+    brand,
+}
