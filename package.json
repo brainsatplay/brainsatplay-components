@@ -1,6 +1,6 @@
 {
-  "name": "@brainsatplay/components",
-  "version": "0.0.0",
+  "name": "brainsatplay-components",
+  "version": "0.0.1",
   "author": "Garrett Flynn <garrettmflynn@gmail.com>",
   "license": "AGPL-3.0-or-later",
   "main": "dist/index.js",
@@ -19,8 +19,8 @@
     "build-storybook": "build-storybook"
   },
   "files": [
-   "/dist",
-    "/src" 
+    "/dist",
+    "/src"
   ],
   "resolutions": {
     "mini-css-extract-plugin": "2.4.5"
