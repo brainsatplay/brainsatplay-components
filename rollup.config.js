@@ -14,19 +14,13 @@ export default {
  input: './src/index.ts', // our source file
  output: [
   {
-   file: pkg.main,
-   format: 'cjs'
+    file: pkg.main,
+    format: 'umd', // the preferred format
+    exports: 'named',
+    name: 'components'
   },
-  {
-   file: pkg.module,
-   format: 'es' // the preferred format
-  },
-  {
-   file: pkg.browser,
-   format: 'iife',
-   name: 'components' // the global which can be used in a browser
-  }
- ],
+  { file: pkg.module, format: 'es'  }
+],
 //  external: [
 //   ...Object.keys(pkg.dependencies || {})
 //  ],
