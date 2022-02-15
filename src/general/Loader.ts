@@ -5,6 +5,7 @@ import { LitElement, html, css } from 'lit';
 export type LoaderProps = {
   progress: number;
   color?: string;
+  background?: string;
 }
 
 export class Loader extends LitElement {
@@ -22,7 +23,6 @@ export class Loader extends LitElement {
     }
 
     #indicator { 
-      border: 1px solid white;
       width: 100%;
       height: 10px;
       overflow: hidden;
@@ -46,17 +46,23 @@ export class Loader extends LitElement {
           type: String,
           reflect: true,
         },
+        background: {
+          type: String,
+          reflect: true,
+        },
       };
     }
 
     progress: LoaderProps['progress']
     color: LoaderProps['color']
+    background: LoaderProps['background']
 
     constructor(props: LoaderProps = {progress: 0}) {
       super();
 
       this.progress = props.progress ?? 0
-      this.color = props.color ?? '#0fb3ff'
+      this.color = props.color ?? '#7aff80'
+      this.background = props.background ?? '#d9d9d9'
 
     }
     
@@ -70,7 +76,7 @@ export class Loader extends LitElement {
     render() {
 
       return html`
-        <div id="indicator">
+        <div id="indicator" style="background:${this.background}">
           <div style="width:${this.progress * 100}%; background: ${this.color}"></div>
         </div>
     `
