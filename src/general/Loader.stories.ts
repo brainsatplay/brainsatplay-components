@@ -26,6 +26,7 @@ const Template: Story<Partial<LoaderProps>> = (args) => new Loader(args);
 
 export const Default = Template.bind({});
 Default.args = {
+  size: '50px',
   showPercent: false
 };
 

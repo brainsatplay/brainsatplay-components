@@ -198,7 +198,7 @@ export class Loader extends LitElement {
 
       const progress = this.progress ?? 0
 
-      const text = this.text ?? (this.showPercent) ? `${(progress*100).toFixed(1)}%` : ''
+      const text = (this.text != undefined) ? this.text : (this.showPercent) ? `${(progress*100).toFixed(1)}%` : ''
 
         switch (this.type){
           case 'linear':
