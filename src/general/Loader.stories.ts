@@ -17,7 +17,7 @@ export default {
         max: 1,
         step: 0.01, 
       }
-    },
+    }
   },
 } as Meta;
 
@@ -25,12 +25,15 @@ const Template: Story<Partial<LoaderProps>> = (args) => new Loader(args);
 
 
 export const Default = Template.bind({});
-// Default.args = {
-//   progress:0.5
-// };
+Default.args = {
+  showPercent: false
+};
 
 export const Linear = Template.bind({});
 Linear.args = {
   type: 'linear',
-  progress:0.5
+  progress:0.5,
+  showPercent: true,
+  textBackground: 'black',
+  textColor: 'white'
 };

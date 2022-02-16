@@ -4,11 +4,14 @@ import { LitElement, html, css } from 'lit';
 
 export type LoaderProps = {
   progress?: number;
+  text?: string;
   color?: string;
   background?: string;
+  textBackground?: string;
+  textColor?: string;
   type?: 'default' | 'linear';
   showPercent?: boolean;
-
+  size?: string;
 }
 
 export class Loader extends LitElement {
@@ -26,14 +29,22 @@ export class Loader extends LitElement {
 
     #indicator { 
       width: 100%;
-      height: 10px;
       overflow: hidden;
       animate: 0.5s;
+      opacity: 0.7;
     }
 
     #indicator > div {
       width: 100%;
       height: 100%;
+    }
+
+    #linear-text {  
+      padding: 10px 15px;
+      border-top-left-radius: 5px;
+      border-top-right-radius: 5px;
+      font-size: 75%;
+      background: white;
     }
 
     .loader-container {
@@ -114,6 +125,10 @@ export class Loader extends LitElement {
           type:Number,
           reflect: true,
         },
+        text: {
+          type: String,
+          reflect: true,
+        },
         type: {
           type: String,
           reflect: true,
@@ -126,6 +141,18 @@ export class Loader extends LitElement {
           type: String,
           reflect: true,
         },
+        textBackground: {
+          type: String,
+          reflect: true,
+        },
+        textColor: {
+          type: String,
+          reflect: true,
+        },
+        size: {
+          type: String,
+          reflect: true,
+        },
       };
     }
 
@@ -134,6 +161,10 @@ export class Loader extends LitElement {
     background: LoaderProps['background']
     type: LoaderProps['type']
     showPercent: LoaderProps['showPercent']
+    text: LoaderProps['text']
+    textColor: LoaderProps['textColor']
+    textBackground: LoaderProps['textBackground']
+    size: LoaderProps['size']
 
     constructor(props: LoaderProps = {}) {
       super();
@@ -143,6 +174,10 @@ export class Loader extends LitElement {
       this.background = props.background ?? '#f3f3f3'
       this.type = props.type ?? 'default'
       this.showPercent = props.showPercent ?? true
+      this.text = props.text
+      this.textBackground = props.textBackground
+      this.textColor = props.textColor
+      this.size = props.size ?? '13px'
 
       // Conditionally change default color
       if (!this.color){
@@ -163,10 +198,13 @@ export class Loader extends LitElement {
 
       const progress = this.progress ?? 0
 
+      const text = this.text ?? (this.showPercent) ? `${(progress*100).toFixed(1)}%` : ''
+
         switch (this.type){
           case 'linear':
             return html`
-              <div id="indicator" style="background:${this.background}">
+            ${ (text) ? html`<div id="linear-text" style="background: ${this.textBackground}; color: ${this.textColor};">${text}</div>` : ''}
+            <div id="indicator" style="height:${this.size}; background:${this.background}; opacity:${(progress === 1) ? 1 : ''};">
                 <div style="width:${progress * 100}%; background: ${this.color}"></div>
               </div>
             `
@@ -174,8 +212,8 @@ export class Loader extends LitElement {
           default: 
             // if (progress < 1) 
             return html`
-            <div class="loader-container">
-              ${(this.showPercent) ? html`<span>${(progress*100).toFixed(1)}%</span>` : ``}
+            <div class="loader-container" style="height:${this.size}; width:${this.size}; background: ${this.textBackground};">
+              ${ (text) ? html`<span style="color: ${this.textColor};">${text}</span>` : ''}
               <div class="loader active" style="border-color: ${this.color};"></div>
             </div>
             `
