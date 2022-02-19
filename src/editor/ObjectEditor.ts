@@ -18,25 +18,26 @@ export class ObjectEditor extends LitElement {
     }
     :host * {
       box-sizing: border-box;
+      font-color: #424242;
+    }
+
+    :host > * {
+      background: white;
+      border-radius: 4px;
+      overflow: hidden;
+      box-shadow: 0 1px 5px 0 rgb(0 0 0 / 20%);
     }
 
     .main {
-      background: white;
-      border: 1px solid gray;
-    }
-
-    button {
-      padding: 10px;
-      min-width: 25px;
+      
     }
 
     .header {
-      padding: 20px;
-      border-top-left-radius: 10px;
-      border-top-right-radius: 10px;
-      color: white;
-      background: black;
-      font-size: 80%;
+      padding: 10px 20px;
+      border-top-left-radius: 3px;
+      border-top-right-radius: 3px;
+      font-size: 70%;
+      border-bottom: 1px solid #e3e3e3;
     }
 
     .header span {
@@ -46,7 +47,6 @@ export class ObjectEditor extends LitElement {
 
     .container {
       background: white;
-      border: 1px solid gray;
       width: 100%;
       padding: 10px;
       display: flex;
@@ -65,10 +65,8 @@ export class ObjectEditor extends LitElement {
       width: 100%;
       font-size: 90%;
       padding: 15px;
-      background: gainsboro;
       flex-grow: 1;
-      margin: 10px;
-      border-radius: 10px;
+      flex-wrap: wrap;
     }
 
     .name {
@@ -126,12 +124,12 @@ export class ObjectEditor extends LitElement {
       let actions;
 
       if (typeof o[key] === 'object') {
-        actions = html`<button @click="${() => {
+        actions = html`<brainsatplay-button primary=true size="small" @click="${() => {
           this.history.push({parent: o, key: this.header})
           this.target = o[key]
           this.header = key
           this.mode = (Array.isArray(o[key])) ? 'plot' : 'view'
-      }}">${Array.isArray(o[key]) ? html`Plot` : html`View`}</button>`
+      }}">${Array.isArray(o[key]) ? html`Plot` : html`View`}</brainsatplay-button>`
       }
 
       return html`
@@ -165,11 +163,11 @@ export class ObjectEditor extends LitElement {
       <div>
         <div class="header separate">
           <span>${this.header}</span>
-          ${ (this.history.length > 0) ? html`<button @click="${() => {
+          ${ (this.history.length > 0) ? html`<brainsatplay-button size="extra-small" @click="${() => {
               const historyItem = this.history.pop()
               this.header = historyItem.key
               this.target = historyItem.parent
-          }}">Go Back</button>` : `No History`}
+          }}">Go Back</brainsatplay-button>` : ``}
         </div>
         <div class="container">
               ${(
