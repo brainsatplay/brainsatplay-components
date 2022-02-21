@@ -1,9 +1,13 @@
-import {LitElement, html, css, } from 'lit';
+import {LitElement, css, } from 'lit';
+import { WebglLinePlotUtils } from '../../../libraries/webglplotutil/webgl-plot-utils.js';
 
 export type TimeSeriesProps = {
-  count?: number;
+  data?: any[][];
   volume?: number;
   backgroundColor?: string;
+  sps:number;
+  seconds:number;
+
 }
 
 export class TimeSeries extends LitElement {
@@ -11,8 +15,8 @@ export class TimeSeries extends LitElement {
     static get styles() {
       return css`
 
-      #wrapper{
-        width: 100%;
+      canvas{
+        background: black;
       }
 
       `;
@@ -20,11 +24,17 @@ export class TimeSeries extends LitElement {
     
     static get properties() {
       return {
-        volume: {
-          type: Number,
+        data: {
+          type: Array,
+          reflect: true,
         },
-        count: {
+        sps: {
           type: Number,
+          reflect: true,
+        },
+        seconds: {
+          type: Number,
+          reflect: true,
         },
         backgroundColor: {
           type: String,
@@ -33,53 +43,76 @@ export class TimeSeries extends LitElement {
       };
     }
 
-    volume: number
-    count: number
+    canvas: HTMLCanvasElement;
+    util: WebglLinePlotUtils;
+    data: any[][] = []
+    spss: number[] = [];
+    buffers: any[] = [];
+
+    sps: TimeSeriesProps['sps']
+    seconds: TimeSeriesProps['seconds']
     backgroundColor: TimeSeriesProps['backgroundColor']
 
-    constructor(props: TimeSeriesProps = {}) {
+    constructor(props: TimeSeriesProps = {seconds: 5, sps: 512}) {
       super();
 
-      this.volume = props.volume ?? 0
+      this.canvas = document.createElement('canvas')
+      this.util = new WebglLinePlotUtils(this.canvas, false)
+
+      this.sps = props.sps ?? 512
+      this.seconds = props.seconds ?? 5
       this.backgroundColor = props.backgroundColor ?? '#69ce2b'
-      this.count = props.count ?? 10
+
+      let newFrame = () => {
+        if (this.buffers.length > 0) {
+            this.util.updateAllLines(this.buffers, this.spss, true);
+            this.util.update();
+        }
+        requestAnimationFrame(newFrame);
+    }
+
+    requestAnimationFrame(newFrame);
 
     }
     
-    willUpdate(changedProps:any) {
-      // console.log(changedProps)
-      if (changedProps.has('volume')) {
-          // const oldValue = changedProps.get('volume');
-          if (!this.volume || this.volume < 0) this.volume = 0
-          else if (this.volume > 1) this.volume = 1
+    willUpdate(updatedProps:any) {
+      if (updatedProps.has('data')) this.draw()
+      // if (updatedProps.has('sps')) this.init()
+      if (updatedProps.has('seconds')) {
+        if (!this.seconds) this.seconds = 0.001
+        this.init()
       }
+    }
+
+    // Only run when changed
+    init = () => {
+        const length = this.data.length
+        let nPointsRenderedPerSec = 60
+        this.sps = this.seconds * nPointsRenderedPerSec
+        // let nPointsRenderedPerSec = Math.ceil(this.seconds / this.sps)
+        this.spss = Array.from({ length }, _ => this.sps)
+        this.buffers = Array.from({ length }, _ => [])
+        this.util.initPlot(length, this.spss, this.seconds, nPointsRenderedPerSec);
+    }
+
+
+    draw = () => {
+        // Plot the Lines
+        if (this.data.length != this.buffers.length) this.init()
+        
+        this.data.forEach((data, i) => {
+              if (this.buffers[i].length === 0) this.buffers[i]  = Array.from({length:this.spss[i]}, _ => data)
+              else {
+                this.buffers[i].pop()
+                this.buffers[i].unshift(data)
+              }
+        })
     }
   
     render() {
 
-      const numToColor = Math.round(this.count*(this.volume ?? 0))
-
-      return html`
-      <style>
-        .target{
-          width: calc(${100/this.count}% - 10px);
-          height: 10px;
-          display: inline-block;
-          margin: 5px;
-          background-color: #e6e7e8;
-        }
-
-        .active {
-          background-color: ${this.backgroundColor};
-        }
-        
-      </style>
-
-        <div id="wrapper">
-          ${Array.from({length: this.count}, (_, i) => html`<div class=${i < numToColor ? 'target active' : 'target'}></div>`)}
-        </div>
-    `
+      return this.canvas
     }
   }
   
-  customElements.define('brainsatplay-data-timeseries', TimeSeries);
+  customElements.define('brainsatplay-timeseries', TimeSeries);

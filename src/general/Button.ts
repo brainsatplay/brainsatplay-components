@@ -1,7 +1,7 @@
 import { LitElement, html, css } from 'lit';
 import { styleMap } from 'lit-html/directives/style-map.js';
 
-export interface ModalProps {
+export interface ButtonProps {
   /**
    * Is this the principal call to action on the page?
    */
@@ -20,7 +20,7 @@ export interface ModalProps {
   onClick?: () => void;
 }
 
-export class Modal extends LitElement {
+export class Button extends LitElement {
 
   static get styles() {
     return css`
@@ -85,12 +85,12 @@ export class Modal extends LitElement {
       };
     }
 
-    primary: ModalProps['primary']
-    backgroundColor: ModalProps['backgroundColor']
-    size: ModalProps['size']
-    onClick: ModalProps['onClick']
+    primary: ButtonProps['primary']
+    backgroundColor: ButtonProps['backgroundColor']
+    size: ButtonProps['size']
+    onClick: ButtonProps['onClick']
 
-    constructor(props: ModalProps = {}) {
+    constructor(props: ButtonProps = {}) {
       super();
 
       this.primary = props.primary
@@ -124,4 +124,4 @@ export class Modal extends LitElement {
     }
   }
   
-  customElements.define('brainsatplay-button', Modal);
+  customElements.define('brainsatplay-button', Button);

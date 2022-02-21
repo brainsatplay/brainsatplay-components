@@ -4,27 +4,27 @@ import { TimeSeries, TimeSeriesProps } from './TimeSeries';
 export default {
   title: 'Streams/Data/TimeSeries',
   argTypes: {
-    count: {
+    seconds: {
       control: {
         type: 'number', // Type 'select' is automatically inferred when 'options' is defined
         min: 0,
-        max: 100,
-        step: 1, 
+        max: 60,
+        step: .1, 
       }
     },
-    TimeSeries: {
-      control: {
-        type: 'range', // Type 'select' is automatically inferred when 'options' is defined
-        min: 0,
-        max: 1,
-        step: 0.01, 
-      }
-    },
-    backgroundColor: {
-      control: {
-        type: 'color', // Type 'select' is automatically inferred when 'options' is defined
-      }
-    }
+    // sps: {
+    //   control: {
+    //     type: 'number', // Type 'select' is automatically inferred when 'options' is defined
+    //     min: 0,
+    //     max: 512,
+    //     step: 1, 
+    //   }
+    // },
+    // backgroundColor: {
+    //   control: {
+    //     type: 'color', // Type 'select' is automatically inferred when 'options' is defined
+    //   }
+    // }
   }
 } as Meta;
 

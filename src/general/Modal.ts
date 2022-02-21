@@ -1,5 +1,4 @@
 import { LitElement, html, css } from 'lit';
-import { styleMap } from 'lit-html/directives/style-map.js';
 
 export interface ModalProps {
   open?: boolean;
@@ -143,8 +142,7 @@ export class Modal extends LitElement {
       // }
     }
 
-    close = () => this.open = false
-    open = () => this.open = true
+    toggle = () => this.open = !this.open
 
     render() {
 
@@ -153,7 +151,7 @@ export class Modal extends LitElement {
       <div class="modal-content ${this.open ? 'open' : 'closed'}">
         ${(this.header) ? html`<div class="modal-header">
           <span>${this.header}</span>
-          <brainsatplay-button secondary size="extra-small" class="close" @click="${this.close}">Close</brainsatplay-button>
+          <brainsatplay-button secondary size="extra-small" class="close" @click="${this.toggle}">Close</brainsatplay-button>
         </div>` : ''}
         <div class="modal-body">
           <slot>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas fringilla dolor vitae hendrerit feugiat. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Integer ultricies arcu nec nibh commodo aliquam at in felis. Mauris lorem dui, porttitor et lectus vel, ornare sodales risus. Sed eu rhoncus ex. Donec tristique nibh lacus, sed dictum lacus lacinia eu. Nunc imperdiet a ante et feugiat. Praesent euismod tortor lacus, et euismod turpis mollis vitae. Etiam sagittis vehicula pulvinar. Aliquam id tincidunt tortor, sed feugiat nulla. Donec sollicitudin tincidunt viverra. Nunc condimentum molestie massa a feugiat. Nam mattis bibendum sodales. Nulla at maximus arcu, quis tempus lacus.
