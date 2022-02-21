@@ -1,6 +1,6 @@
 {
   "name": "brainsatplay-components",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "author": "Garrett Flynn <garrettmflynn@gmail.com>",
   "license": "AGPL-3.0-or-later",
   "main": "dist/index.js",
@@ -45,6 +45,7 @@
     "@testing-library/user-event": "^13.2.1",
     "@types/jest": "^27.0.1",
     "@types/node": "^16.7.13",
+    "@types/offscreencanvas": "^2019.6.4",
     "@typescript-eslint/eslint-plugin": "^5.9.1",
     "@typescript-eslint/parser": "^5.9.1",
     "@web/rollup-plugin-copy": "^0.3.0",
