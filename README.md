@@ -1,13 +1,16 @@
-# [brainsatplay-components](ui.brainsatplay.com)
+# [brainsatplay-ui](ui.brainsatplay.com)
 The Brains@Play Design System built using Web Components.
 
-`brainsatplay-components` is an open-source design system built by Brains@Play.
+`brainsatplay-ui` is an open-source design system built by Brains@Play.
+
+It is optimized for applications that incorporate real-time data streams.
+
 
 ## Basic Usage
 ```html
 <html>
 <head>
-    <script src="https://cdn.jsdelivr.net/npm/brainsatplay-components/"></script>
+    <script src="https://cdn.jsdelivr.net/npm/brainsatplay-ui/"></script>
 </head>
     <body></body>
     <script>
@@ -29,7 +32,8 @@ The Brains@Play Design System built using Web Components.
 ```
 
 ## To Do
-1. Basic Time-Series Visualization
-2. Device Playground
-3. Sidebar
-4. Everything on https://web-components.carbondesignsystem.com/?path=/story/components-accordion--default
+1. Control Panel
+    - Device Connection / Management + Playground
+    - Multiplayer Session Management
+    - File Viewer
+2. Everything on https://web-components.carbondesignsystem.com/?path=/story/components-accordion--default
