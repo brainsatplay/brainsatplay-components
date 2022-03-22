@@ -1,6 +1,6 @@
 {
   "name": "brainsatplay-ui",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "author": "Garrett Flynn <garrettmflynn@gmail.com>",
   "license": "AGPL-3.0-or-later",
   "main": "dist/index.js",
