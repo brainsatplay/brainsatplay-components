@@ -103,8 +103,9 @@ export class TimeSeries extends LitElement {
         this.data.forEach((data, i) => {
               if (this.buffers[i].length === 0) this.buffers[i]  = Array.from({length:this.spss[i]}, _ => data)
               else {
-                this.buffers[i].pop()
-                this.buffers[i].unshift(data)
+                if (!Array.isArray(data)) data = [data]
+                data.forEach(() => this.buffers[i].pop())
+                this.buffers[i].unshift(...data)
               }
         })
     }
